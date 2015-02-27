@@ -254,7 +254,7 @@ class RESTfulAPI_DefaultQueryHandler implements RESTfulAPI_QueryHandler
     foreach ($queryParams as $param)
     {
       // Check if model contains $param['Column']
-      if ( !singleton($model)->hasField($param['Column']) )
+      if ( !array_key_exists($param['Column'], array_change_key_case(DataObject::database_fields($model), CASE_LOWER)) )
       {
         return new RESTfulAPI_Error(400,
           "Requested filter column ".$param['Column']." does not exist in model ".$model."."
