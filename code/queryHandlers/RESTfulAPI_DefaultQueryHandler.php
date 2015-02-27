@@ -272,7 +272,7 @@ class RESTfulAPI_DefaultQueryHandler implements RESTfulAPI_QueryHandler
         case 'lessthan':
         case 'negation':
           // Validate $param['Value']
-          if ( !$param['Value'] )
+          if ( !isset($param['Value']) || $param['Value'] == "" )
           {
             return new RESTfulAPI_Error(400,
               "Empty filter value for column ".$param['Column']."."
@@ -281,7 +281,7 @@ class RESTfulAPI_DefaultQueryHandler implements RESTfulAPI_QueryHandler
           break;
         case 'sort':
           // Validate $param['Value']
-          if ( !$param['Value'] )
+          if ( !isset($param['Value']) || $param['Value'] == "" )
           {
             return new RESTfulAPI_Error(400,
               "Empty filter value for column ".$param['Column']."."
